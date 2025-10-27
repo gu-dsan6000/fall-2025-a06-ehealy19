@@ -1,0 +1,11 @@
+log_entry,log_level
+17/03/29 10:04:52 INFO broadcast.TorrentBroadcast: Started reading broadcast variable 2,info
+17/03/29 10:11:15 INFO executor.Executor: Finished task 2.0 in stage 2.0 (TID 23). 2271 bytes result sent to driver,info
+17/03/29 10:11:17 INFO storage.ShuffleBlockFetcherIterator: Getting 20 non-empty blocks out of 20 blocks,info
+17/03/29 10:03:18 INFO executor.Executor: Finished task 3.0 in stage 1.0 (TID 4). 2653 bytes result sent to driver,info
+17/03/29 10:04:44 INFO ExecutorRunnable: Starting Executor Container,info
+17/03/29 10:03:17 INFO storage.BlockManager: Found block rdd_2_0 locally,info
+17/03/29 10:11:19 INFO executor.Executor: Running task 3.0 in stage 7.0 (TID 123),info
+"17/03/29 10:04:53 INFO Configuration.deprecation: mapred.task.id is deprecated. Instead, use mapreduce.task.attempt.id",info
+17/03/29 10:09:40 INFO broadcast.TorrentBroadcast: Reading broadcast variable 6 took 107 ms,info
+17/03/29 10:07:44 INFO spark.MapOutputTrackerWorker: Doing the fetch; tracker endpoint = NettyRpcEndpointRef(spark://MapOutputTracker@10.10.34.11:48782),info
