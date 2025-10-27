@@ -1,11 +1,11 @@
 log_entry,log_level
-17/03/29 10:04:52 INFO broadcast.TorrentBroadcast: Started reading broadcast variable 2,info
-17/03/29 10:11:15 INFO executor.Executor: Finished task 2.0 in stage 2.0 (TID 23). 2271 bytes result sent to driver,info
-17/03/29 10:11:17 INFO storage.ShuffleBlockFetcherIterator: Getting 20 non-empty blocks out of 20 blocks,info
-17/03/29 10:03:18 INFO executor.Executor: Finished task 3.0 in stage 1.0 (TID 4). 2653 bytes result sent to driver,info
-17/03/29 10:04:44 INFO ExecutorRunnable: Starting Executor Container,info
-17/03/29 10:03:17 INFO storage.BlockManager: Found block rdd_2_0 locally,info
-17/03/29 10:11:19 INFO executor.Executor: Running task 3.0 in stage 7.0 (TID 123),info
-"17/03/29 10:04:53 INFO Configuration.deprecation: mapred.task.id is deprecated. Instead, use mapreduce.task.attempt.id",info
-17/03/29 10:09:40 INFO broadcast.TorrentBroadcast: Reading broadcast variable 6 took 107 ms,info
-17/03/29 10:07:44 INFO spark.MapOutputTrackerWorker: Doing the fetch; tracker endpoint = NettyRpcEndpointRef(spark://MapOutputTracker@10.10.34.11:48782),info
+17/06/09 13:04:08 INFO broadcast.TorrentBroadcast: Started reading broadcast variable 12542,info
+17/06/09 11:26:16 INFO executor.Executor: Running task 22.0 in stage 1115.0 (TID 45059),info
+"17/06/08 16:32:52 INFO python.PythonRunner: Times: total = 40, boot = -10, init = 50, finish = 0",info
+17/06/07 15:05:44 INFO executor.Executor: Finished task 28.0 in stage 521.0 (TID 20872). 2364 bytes result sent to driver,info
+17/06/09 12:46:57 INFO executor.Executor: Finished task 25.0 in stage 10758.0 (TID 430786). 2364 bytes result sent to driver,info
+17/02/01 21:21:10 INFO storage.ShuffleBlockFetcherIterator: Started 6 remote fetches in 1 ms,info
+"17/06/09 17:46:28 INFO python.PythonRunner: Times: total = 56, boot = -6, init = 62, finish = 0",info
+17/06/09 17:01:58 INFO storage.BlockManager: Found block rdd_3295_22 locally,info
+17/06/09 12:02:12 INFO executor.Executor: Running task 31.0 in stage 6095.0 (TID 244272),info
+17/06/08 20:26:00 INFO storage.BlockManager: Found block rdd_17272_34 locally,info

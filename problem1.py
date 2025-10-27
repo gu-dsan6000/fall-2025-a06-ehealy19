@@ -79,7 +79,7 @@ def solve_prob1(input_dir):
 def main():
     """Main function for problem 1."""
     
-    input_path = "data/sample/application_1485248649253_0052/"
+    input_path = "./raw/"
     solve_prob1(input_path)
 
 if __name__ == "__main__":
