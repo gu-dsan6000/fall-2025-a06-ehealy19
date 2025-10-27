@@ -8,12 +8,14 @@ import pandas as pd
 import os, shutil
 from pyspark.sql.functions import input_file_name
 from pyspark.sql.functions import expr
+import sys
 
-def create_spark_session():
+def create_spark_session(master_url="local[*]"):
     """Create a Spark session for Problem 2"""
     spark = (
         SparkSession.builder
         .appName("Problem2")
+        .master(master_url)
         .getOrCreate()
     )
     return spark
@@ -27,11 +29,11 @@ def save_csv_file(df, output_path):
     shutil.move(os.path.join(temp_dir, part_file), output_path)
     shutil.rmtree(temp_dir)
 
-def solve_prob2(input_dir):
+def solve_prob2(input_dir, master_url):
     """Computation section for counts, sample, and summary statistics."""
 
     # starting the spark session
-    spark = create_spark_session()
+    spark = create_spark_session(master_url)
 
     # defining the input and output paths
     output_timeseries = "data/output/problem2_timeline.csv"
@@ -132,9 +134,9 @@ def solve_prob2(input_dir):
 
 def main():
     """Main function for problem 2."""
-    
+    master_url = sys.argv[1] if len(sys.argv) > 1 else "local[*]"
     input_path = "./raw/"
-    solve_prob2(input_path)
+    solve_prob2(input_path, master_url)
 
 if __name__ == "__main__":
     main()

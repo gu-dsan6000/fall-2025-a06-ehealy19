@@ -1,11 +1,11 @@
 log_entry,log_level
-17/06/09 13:04:08 INFO broadcast.TorrentBroadcast: Started reading broadcast variable 12542,info
-17/06/09 11:26:16 INFO executor.Executor: Running task 22.0 in stage 1115.0 (TID 45059),info
-"17/06/08 16:32:52 INFO python.PythonRunner: Times: total = 40, boot = -10, init = 50, finish = 0",info
-17/06/07 15:05:44 INFO executor.Executor: Finished task 28.0 in stage 521.0 (TID 20872). 2364 bytes result sent to driver,info
-17/06/09 12:46:57 INFO executor.Executor: Finished task 25.0 in stage 10758.0 (TID 430786). 2364 bytes result sent to driver,info
-17/02/01 21:21:10 INFO storage.ShuffleBlockFetcherIterator: Started 6 remote fetches in 1 ms,info
-"17/06/09 17:46:28 INFO python.PythonRunner: Times: total = 56, boot = -6, init = 62, finish = 0",info
-17/06/09 17:01:58 INFO storage.BlockManager: Found block rdd_3295_22 locally,info
-17/06/09 12:02:12 INFO executor.Executor: Running task 31.0 in stage 6095.0 (TID 244272),info
-17/06/08 20:26:00 INFO storage.BlockManager: Found block rdd_17272_34 locally,info
+17/06/09 19:57:11 INFO executor.Executor: Running task 19.0 in stage 2132.0 (TID 85899),info
+17/06/09 13:19:56 INFO executor.Executor: Running task 31.0 in stage 13659.0 (TID 546822),info
+"17/06/09 17:39:31 INFO python.PythonRunner: Times: total = 41, boot = -41, init = 82, finish = 0",info
+17/06/09 16:56:25 INFO executor.CoarseGrainedExecutorBackend: Got assigned task 58762,info
+"17/06/09 17:09:29 INFO python.PythonRunner: Times: total = 37, boot = -23, init = 60, finish = 0",info
+"17/06/08 17:38:53 INFO python.PythonRunner: Times: total = 39, boot = -51, init = 89, finish = 1",info
+17/06/08 15:08:13 INFO executor.CoarseGrainedExecutorBackend: Got assigned task 43069,info
+"17/03/23 14:47:44 INFO storage.MemoryStore: Block broadcast_5_piece38 stored as bytes in memory (estimated size 4.0 MB, free 1694.7 MB)",info
+"17/06/09 15:52:12 INFO python.PythonRunner: Times: total = 37, boot = 16, init = 21, finish = 0",info
+17/06/09 11:44:59 INFO broadcast.TorrentBroadcast: Started reading broadcast variable 4047,info
