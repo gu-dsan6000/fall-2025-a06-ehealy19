@@ -9,6 +9,7 @@ import os, shutil
 from pyspark.sql.functions import input_file_name
 from pyspark.sql.functions import expr
 import sys
+import glob
 
 def create_spark_session(master_url="local[*]"):
     """Create a Spark session for Problem 2"""
@@ -43,11 +44,22 @@ def solve_prob2(input_dir, master_url):
     output_density = "data/output/problem2_density_plot.png"
 
     # reading in the log files
-    logs = spark.read.text(input_dir)
+    spark.conf.set("spark.hadoop.mapreduce.input.fileinputformat.input.dir.recursive", "true")
+    log_files = (
+        glob.glob("/home/ubuntu/spark-cluster/raw/application_*/**/*.log", recursive=True)
+        + glob.glob("/home/ubuntu/spark-cluster/raw/application_*/*.log")
+    )
+    print("DEBUG: Number of .log files matched:", len(log_files))
+    print("First few:", log_files[:5])
+
+    logs = spark.read.text(log_files)
     logs = logs.withColumn("file_path", input_file_name())
-    logs = logs.withColumn("application_id", regexp_extract(col("file_path"), r"(application_\d+_\d+)", 1))
+    logs = logs.withColumn("application_id", regexp_extract(col("file_path"), r"application_\d+_\d+", 0))
     logs = logs.withColumn("cluster_id", regexp_extract(col("application_id"), r"application_(\d+)_", 1))
     
+    print("DEBUG: Number of rows loaded:", logs.count())
+    logs.select("file_path").show(10, truncate=False)
+
     # getting the timeseries data
     time_pattern = r"(\d{2}/\d{2}/\d{2} \d{2}:\d{2}:\d{2})"
     logs = logs.withColumn("timestamp", regexp_extract(col("value"), time_pattern, 1))
@@ -62,7 +74,7 @@ def solve_prob2(input_dir, master_url):
         .orderBy("cluster_id", "start_time")
     )
     app_times = app_times.withColumn("app_number", substring_index(col("application_id"), "_", -1))
-    save_csv_file(app_times, output_timeseries)
+    app_times.toPandas().to_csv("/home/ubuntu/spark-cluster/data/output/problem2_timeline.csv", index=False)
 
     # getting the aggregated cluster statistics
     cluster_summary = (
@@ -74,7 +86,7 @@ def solve_prob2(input_dir, master_url):
         )
         .orderBy(desc("num_applications"))
     )
-    save_csv_file(cluster_summary, output_cluster)
+    cluster_summary.toPandas().to_csv("/home/ubuntu/spark-cluster/data/output/problem2_cluster_summary.csv", index=False)
 
     # computing the summary statistics
     total_clusters = cluster_summary.count()
@@ -111,20 +123,16 @@ def solve_prob2(input_dir, master_url):
     plt.close()
 
     # creating the faceted density plot visualization
-    largest_cluster = cluster_pd.iloc[0]["cluster_id"]
-    largest_cluster_apps = app_times.filter(col("cluster_id") == largest_cluster)
-    apps_pd = largest_cluster_apps.toPandas()
+    apps_pd = app_times.toPandas()
     apps_pd["duration_sec"] = (apps_pd["end_time"] - apps_pd["start_time"]).dt.total_seconds()
     plt.figure(figsize=(8, 5))
     plt.hist(apps_pd["duration_sec"], bins=30, alpha=0.6, color="steelblue", density=True)
     if len(apps_pd["duration_sec"].dropna()) > 1:
         apps_pd["duration_sec"].plot(kind="kde", color="red")
-    else:
-        print("Skipping KDE overlay — not enough data points.")
     plt.xscale("log")
     plt.xlabel("Job Duration (seconds, log scale)")
     plt.ylabel("Density")
-    plt.title(f"Job Duration Distribution — Cluster {largest_cluster} (n={len(apps_pd)})")
+    plt.title(f"Job Duration Distribution Across All Clusters (n={len(apps_pd)})")
     plt.tight_layout()
     plt.savefig(output_density)
     plt.close()
@@ -135,7 +143,7 @@ def solve_prob2(input_dir, master_url):
 def main():
     """Main function for problem 2."""
     master_url = sys.argv[1] if len(sys.argv) > 1 else "local[*]"
-    input_path = "./raw/"
+    input_path = "/home/ubuntu/spark-cluster/raw/application_*"
     solve_prob2(input_path, master_url)
 
 if __name__ == "__main__":

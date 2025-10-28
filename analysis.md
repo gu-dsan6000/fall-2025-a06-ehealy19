@@ -8,10 +8,15 @@ For problem 2, I took the skeleton of problem 1, resuing the main functions in t
 
 ## Key Findings and Insights
 
+Something I found intereseting was a large portion of the log files did not have a log level. In addition, the log files did not contain any debugging files based on the log level counts in problem 1. 
+
 ## Performance Observations
+
+Overall, the performance of the clusters was good. It was able to process a very large dataset in a realitvely short amount of time. The first problem did complete much more efficiently than the second problem.
 
 ## Spark Web UI
 
-![]("./prob1_UI.png)
+![](./prob1_UI.png)
+![](./prob2_UI.png)
 
 ## Explanation of Problem 2 Visualizations
